@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import * as PoolService from './services/PoolService'
 import Config from './app.config'
 import * as PricesService from './services/PricesService'
+import Navigation from './components/Navigation'
 
 export default function App() {
 
@@ -68,7 +69,7 @@ export default function App() {
     })
   }
 
-  return (
+  return <Navigation /> /* (
     <View style={styles.container}>
       <Text>Unpaid: {data.unpaid}</Text>
       <Text>Current Hashrate: {data.hashrate}</Text>
@@ -88,7 +89,7 @@ export default function App() {
         <Text key={index}>{`${coin}: ${prices[coin].usd}`}</Text>)
       }
     </View>
-  )
+  ) */ 
 }
 
 const styles = StyleSheet.create({
