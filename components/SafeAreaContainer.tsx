@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, ReactNode } from 'react'
 import { StyleSheet, View, Keyboard } from 'react-native'
 import Config from '../app.config'
 
-const SafeAreaContainer = ({ style, children }: any) => {
+interface Props {
+    children: ReactNode,
+    style?: Object 
+}
+
+const SafeAreaContainer = ({ style, children }: Props) => {
 
     const externalStyles = style ? style : {}
     const [keyboard, setKeyboard] = useState(false)
@@ -23,7 +28,7 @@ const SafeAreaContainer = ({ style, children }: any) => {
 
     return (
         <View style={styles.container}>
-            <View style={{flex: 1, marginBottom: !keyboard ? 114 : 0, ...externalStyles}}>
+            <View style={{flex: 1, marginBottom: !keyboard ? 115 : 0, ...externalStyles}}>
                 {children}
             </View>
         </View>
