@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, Dimensions } from 'react-native'
+import { View, Dimensions } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -8,6 +8,8 @@ import { Ionicons } from '@expo/vector-icons'
 import Converter from '../screens/Converter'
 import MyAddresses from '../screens/MyAddresses'
 import Configuration from '../screens/Configuration'
+import Header from './Header'
+import appConfig from '../app.config'
 
 const { width, height } = Dimensions.get('window')
 
@@ -15,24 +17,36 @@ const Stack = createNativeStackNavigator()
 
 const ConverterStackScreen = () => {
     return (
-        <Stack.Navigator>
-            <Stack.Screen name="Converter" component={Converter}/>
+        <Stack.Navigator
+            screenOptions={{
+                headerShown: false
+            }}
+        >
+            <Stack.Screen name="ConverterStack" component={Converter}/>
         </Stack.Navigator>
     )
 }
 
 const MyAddressesStackScreen = () => {
     return (
-        <Stack.Navigator>
-            <Stack.Screen name="MyAddresses" component={MyAddresses}/>
+        <Stack.Navigator
+            screenOptions={{
+                headerShown: false
+            }}
+        >
+            <Stack.Screen name="MyAddressesStack" component={MyAddresses}/>
         </Stack.Navigator>
     )
 }
 
 const ConfigurationStackScreen = () => {
     return (
-        <Stack.Navigator>
-            <Stack.Screen name="Configuration" component={Configuration}/>
+        <Stack.Navigator
+            screenOptions={{
+                headerShown: false
+            }}
+        >
+            <Stack.Screen name="ConfigurationStack" component={Configuration}/>
         </Stack.Navigator>
     )
 }
@@ -43,9 +57,8 @@ export default function Navigation () {
     return (
         <NavigationContainer>
             <Tab.Navigator
-                screenOptions={({route}) => ({
-                    headerTitle: () => <Text>Header</Text>,
-                    tabBarIcon: ({focused, color, size}) => {
+                screenOptions={({ route }) => ({
+                    tabBarIcon: ({ focused, color, size }) => {
                         let iconName
                         switch (route.name) {
                             case 'Converter':
@@ -69,7 +82,17 @@ export default function Navigation () {
                     tabBarInactiveTintColor: 'grey',
                     tabBarLabelStyle: {
                         width
-                    }
+                    },
+                    header: () => <Header/>,
+                    tabBarStyle: {
+                        borderTopLeftRadius: 20,
+                        borderTopRightRadius: 20,
+                        backgroundColor: appConfig.colors.primaryDark,
+                        height: 60,
+                    },
+                    tabBarBackground: () => (
+                        <View style={{backgroundColor: appConfig.colors.primary}}/>
+                    )
                 })}
             >
                 <Tab.Screen name="Converter" component={ConverterStackScreen}/>

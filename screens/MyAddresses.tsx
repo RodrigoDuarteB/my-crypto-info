@@ -1,15 +1,22 @@
 import React from 'react'
 import { StyleSheet, Text, SafeAreaView } from 'react-native'
+import SafeAreaContainer from '../components/SafeAreaContainer'
 
 const MyAddresses = () => {
     return (
-        <SafeAreaView>
+        <SafeAreaContainer style={styles.container}>
             <Text>My Addresses Screen</Text>
-        </SafeAreaView>
+        </SafeAreaContainer>
     )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    }
+})
 
 export default MyAddresses
 
